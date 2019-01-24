@@ -1,0 +1,29 @@
+<p>
+  Je suis un composant simple
+</p>
+<!-- ul>li*4 = raccourci pour generer 4 li dans 1 ul -->
+<ul>
+  <li>On ne peut pas modifier mon template</li>
+  <li>Je peux utiliser les directives de base Angular</li>
+  <li>J'ai mon propre CSS Scopé</li>
+  <li>Je pilote mon template</li>
+</ul>
+
+<p>Simple binding de texte {{simpleText}}</p>
+<button (click)="simpleAction()">Binding sur Event</button>
+<a href="#" [title]="simpleText">Binding sur attribut (rester en survol pour voir mon attribut title)
+</a>
+
+<p>J'utilise les drectives</p>
+
+<p>Si votre texte fait {{simpleText.length}} lettres il est
+  <b *ngIf="simpleText.length>20">long</b>
+  <b *ngIf="simpleText.length<20">court</b>
+</p>
+
+<p>
+  <code>*ngFor</code>
+
+    <li *ngFor="let simpleString of simpleArray">{{simpleString}}</li>
+
+</p>

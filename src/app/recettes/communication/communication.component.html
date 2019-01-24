@@ -1,0 +1,23 @@
+<p>
+  Je suis un composant communiquant : 
+  <br>
+  Je recois des entrees avec <code>@Input</code>
+  <br>
+  J'envoie des messages (événements) avec <code>@Output</code>
+  <br>
+  J'accueille dans mon template en utilisant la directive <code>ng-content</code>
+</p>
+
+<hr>
+{{incomingValue}}
+<hr>
+
+<ng-content></ng-content>
+
+<hr>
+<!--$event : l'evenement associé au clic bouton -> c'est un mouseclick -->
+<button (click)="increment($event)" [disabled]="count>=5">
+  If you click me 5 times I will stop and tell my <code>parent</code>
+  <br>
+  <b>{{5 - count}} click to go</b>
+</button>
