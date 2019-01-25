@@ -1,0 +1,23 @@
+<!-- form>input[name]*2+button
+rmq : form est un alias de ngForm-->
+<form #loginForm="ngForm"> <!-- creation dune variable loginForm-->
+  <input
+  type="text"
+  name="usr"
+  required
+  pattern="[a-z]{3,}"
+  [(ngModel)]="username"
+  #name="ngModel"> <!-- creation dune variable name-->
+  <div class="alert--danger" *ngIf="name.invalid">
+    Au moins 3 lettres minuscules
+  </div>
+<br>
+  <input
+  type="text"
+  name="pwd"
+  required
+  [(ngModel)]="password">
+  <hr>
+  <code>{{username}}-{{password}}</code>
+  <button (click)="login()" [disabled]="loginForm.invalid">Enter</button>
+</form>
