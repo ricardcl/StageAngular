@@ -140,8 +140,28 @@ et chaque module qui contient des composants qui veulent s'en servir doivent l'i
 
 
 
+[(ngModel)]="username" : binding bidirectionnel      : [()]
+
+
 
 pour retrouver toutes les docs officielles : https://devdocs.io/angular/
 
 
-[(ngModel)]="username" : binding bidirectionnel      : [()]
+pour tester une application
+- http://nightwatchjs.org/
+on ecrit des scripts dans nightwatch pour tester l'appli
+- https://www.cypress.io/
+- dossier e2e dans angular (protractor)
+
+
+tests unitaires
+langage de test angular : jasmine
+sous modules de test  ( chaque module angular possede un ss module testing qui a des utilisaire de test)
+;;;
+
+tout ca géré par karma dans angular/scaffholder
+dans /src/karma.conf
+
+
+
+
