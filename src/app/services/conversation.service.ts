@@ -1,28 +1,61 @@
+import { Injectable, EventEmitter } from '@angular/core';
 
-import { Injectable } from '@angular/core';
-import { Manager, Observable, OpenObject } from '../@models/manager';
+import { Manager, OpenObject } from '../@models/manager';
+import { Message } from '../@models/message';
+import { Observable } from 'rxjs';
+import { NetService } from './net.service';
 import { Contact } from '../@models/contact';
+import { MessageStatus } from './message-status.enum';
+
 
 @Injectable({
   providedIn: 'root'
 })
+export class ConversationService implements Manager<Message> {
+  collection: Message[];
+  api = 'http://192.168.15.100:5050/messages';
 
-export class ContactService implements Manager<Contact> {
-  collection: Contact[];
-  api: string;
+  origine: Contact = { id: 1, name: { first: 'claire', last: ' r' } };
 
-  load(limit?: number): Observable<Contact[]> {
-    throw new Error();
-  }
-  send(data: Contact): Observable<Contact> {
-    throw new Error();
-  }
-  update(target: Contact, updates: OpenObject): Observable<Contact> {
-    throw new Error();
-  }
-  search(criterias: OpenObject): Observable<Contact[]> {
-    throw new Error();
+  recipient: Contact = {
+    id: 1,
+    name: { first: 'Pierre', last: ' R' }
+  };
+
+  reload = new EventEmitter();
+
+  constructor(private net: NetService) {
+
+
+    setInterval(
+      () => this.load().subscribe( data => { this.reload.emit(data); } )
+      , 3000
+    );
   }
 
-  constructor() { }
+  create(text) {
+    return  {
+      text,
+      status: MessageStatus.SENT,
+      userId: this.origine.id,
+      origin: this.origine,
+      recipient: this.recipient
+    };
+  }
+
+  load(limit?: number): Observable<Message[]> {
+    return this.net.read(this.api);
+  }
+
+  send(data: Message): Observable<Message> {
+    return this.net.create(this.api, data);
+  }
+
+  search(criterias: OpenObject): Observable<Message[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  update(target: Message, updates: OpenObject): Observable<Message> {
+    throw new Error('Method not implemented.');
+  }
 }
