@@ -1,0 +1,7 @@
+<img [src]=" 'http://unsplash.it/75?' + profile.name.first" alt="">
+<h1>{{ profile.name.first + ' ' + profile.name.last}}</h1>
+<h2>{{ profile.infos.city }}</h2>
+<h2>{{ profile.infos.email }}</h2>
+<h2>{{ profile.infos.phone }}</h2>
+<app-profile-activity [profile]="profile"></app-profile-activity>
+
