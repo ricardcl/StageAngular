@@ -1,0 +1,147 @@
+    - plugin vscode pour avoir la completion dans vs code des modules
+dans les extensions de vscode on cherche angular essentials
+
+et ajout de augury angular io dans chrome pour voir un arbre de composants
+
+- si angular ne trouve pas le service,
+on lui demande de ne pas faire d'erreur en précisant @optional devant
+
+ constructor(@Optional() @Inject(TalkywalkyService) private service:TalkywalkyService) { 
+
+-le @Inject(TalkywalkyService) , 
+pas obligatoire de l ecrire, cest rajoute automatiquement par typescript
+constructor( private service:TalkywalkyService) { 
+
+- En javascript les primitives sont transmises par valeur
+et tout le reste est transmis par reference
+  
+- rmq : par defaut les services quand ils sont injectés le sont 
+par singleton -> on retrouve la meme valeur aleatoire 
+dans child1 et child2
+
+- pur css : on adoucit la propriete transforme en 0.3 secondes
+  @HostBinding('style.transition') transition = 'transform .3s ease';
+  pur css : si on passe sur l'objet, on fait evoluer la propriete transform
+  @HostBinding('style.transform') transform;
+
+  la directive peut ecouter des veent sur son hote qui lui appartient au DOM
+  @HostListener('mouseenter')
+
+
+- https://regex101.com/ pour tester les regex
+
+
+tous les services sont par defaut au niveau root
+donc c'est la meme instance utilisee par tous les composants
+mais si on veut que ce soient deux instances differentes qui soient utilisees il faut declarer le service dans un compostant en provider :
+styleErls: ...
+providers : [MonService],
+utile si on veut un service que pour certains composants et qu'il est inutile pour la totalite des composants
+
+
+utilisation d'un observable  ( pas besoin d'event listener, on souscrit a l'observable)
+
+import { Component, ElementRef } from "@angular/core";
+
+import { of, fromEvent, timer } from "rxjs";
+
+import { tap, scan, takeUntil } from "rxjs/operators";
+
+
+@Component({
+  selector: "app-root",
+  
+templateUrl: "./app.component.html",
+  
+styleUrls: ["./app.component.scss"]
+})
+
+
+export class AppComponent {
+  
+title = "rocking-chair";
+
+  
+constructor(el: ElementRef) {
+    const click = fromEvent(el.nativeElement, "click");
+
+    
+const timeOut = timer(3000)
+
+    
+click
+      
+.pipe(tap(e => console.warn(e)))
+      
+.pipe(scan((acc = 0, curr) => acc + 1, 0))
+      
+.pipe(takeUntil( timeOut ) )
+      
+.subscribe(e => console.log(e));
+
+    
+console.log(click);
+  }
+
+  
+log(param) {
+    console.warn(param);
+  }
+}
+
+
+
+pour decrire des objest en javascript on ecrit des classes (ou des interfaces sil ny a pas de methodes a rattacher)
+
+
+
+
+git remote add origin https://github.com/ricardcl/bla.git
+git push -u origin master
+
+
+ajout dun template css (knacss)
+npm i knacss
+ajout de la ligne dans angular.json 
+  "styles": [
+              "node_modules/knacss/css/knacss.css",
+              "src/styles.css"
+            ],
+et relance du ng serve
+
+
+Feuille de style qui rajoute des icones /
+on lecrit dans index.html
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+install json server pou mocker l'api
+npm i json-server
+creation dossier api
+et fichie rdata.json 
+dans le dossier rockingChair ( a la racine du projet)
+ajout de "api": "json-server ./api/data.json -w -p 5050", dans package.json > scripts
+
+
+
+angular copilot
+
+
+
+
+formulaire
+dual binding (dans les deux sens) entre la classe et la vue
+notion de ngform et ngmodel
+dans app ng g c login
+dans appModule : import { FormsModule } from '@angular/forms';
+et imports: [
+    FormsModule,
+et chaque module qui contient des composants qui veulent s'en servir doivent l'importer
+
+
+
+
+pour retrouver toutes les docs officielles : https://devdocs.io/angular/
+
+
+[(ngModel)]="username" : binding bidirectionnel      : [()]
