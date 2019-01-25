@@ -1,4 +1,11 @@
-<app-contact-search></app-contact-search>
-<app-contact-list></app-contact-list>
+<!-- quand il y a un search Event on stocke la valeur de l'event dans criteria-->
+<app-contact-search (searchEvent)="criteria = $event"></app-contact-search>
+<br>
+<!-- S'il y a un critere de rempli dans la barre de recherche
+on affiche la valeur du criter et un X sur lequel on peut cliquer pour réinitialiser le critere-->
+<code *ngIf="criteria">{{criteria}} <b (click)=" criteria = '' ">X</b></code>
+
+<!-- Avant d'afficher la liste des contacts on applique la methode getCollection qui filtre selon le criteria sil y en a un-->
+<app-contact-list [contactList]="getCollection()"></app-contact-list>
 
 

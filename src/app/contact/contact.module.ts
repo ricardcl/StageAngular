@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ContactComponent } from './contact/contact.component';
 import { ContactSearchComponent } from './contact-search/contact-search.component';
@@ -12,4 +12,7 @@ import { ContactListItemComponent } from './contact-list-item/contact-list-item.
   ],
   exports: [ContactComponent]
 })
-export class ContactModule { }
+export class ContactModule {
+
+
+}
