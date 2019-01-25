@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Message } from 'src/app/@models/message';
 
 @Component({
   selector: 'app-conversation-display',
   templateUrl: './conversation-display.component.html',
   styleUrls: ['./conversation-display.component.css']
 })
-export class ConversationDisplayComponent implements OnInit {
+export class ConversationDisplayComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() messageList: Message[];
 
 }

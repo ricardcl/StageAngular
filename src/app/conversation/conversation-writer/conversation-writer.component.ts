@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-conversation-writer',
   templateUrl: './conversation-writer.component.html',
   styleUrls: ['./conversation-writer.component.css']
 })
-export class ConversationWriterComponent implements OnInit {
+export class ConversationWriterComponent  {
 
-  constructor() { }
+  @Output() message = new EventEmitter<string>();
 
-  ngOnInit() {
+  sendMessage( evt: Event ) {
+    this.message.emit( (<HTMLInputElement>event.target).value);
+    (<HTMLInputElement>event.target).value = '';
   }
 
 }

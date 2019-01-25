@@ -1,4 +1,4 @@
-<app-conversation-header></app-conversation-header>
-<app-conversation-display></app-conversation-display>
-
-<app-conversation-writer></app-conversation-writer>
+<app-conversation-header [contact]="recipient"></app-conversation-header>
+<app-conversation-display [messageList]="messages"></app-conversation-display>
+<app-conversation-writer (message)="addMessage($event)"></app-conversation-writer>
+<hr>
